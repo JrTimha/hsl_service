@@ -1,9 +1,9 @@
-# HSL Transcoding Service -  for SaaS Backends
+# HSL Transcoding Service - for SaaS Backends
 
 A high-performance, scalable transcoding solution specifically designed to transcode mp4 to hsl. Tokio and Axum provides an asynchronous, stable, and efficient solution.
 
 
-## Key Points of ISM:
+## Key Points of HSL:
 
 -   **Scalability**: Built with the asynchronous Tokio runtime, ISM efficiently handles thousands of simultaneous connections.
 -   **Easy Integration**: Designed for seamless integration with existing SaaS architectures.

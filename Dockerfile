@@ -5,6 +5,7 @@ WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 COPY src ./src
 
+RUN apt-get update && apt-get install -y --no-install-recommends libssl-dev pkg-config
 
 # Baue Abhängigkeiten
 RUN cargo build --release --target x86_64-unknown-linux-gnu
