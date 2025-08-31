@@ -21,11 +21,11 @@ WORKDIR /app
 
 COPY default.config.toml ./
 
-COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/hsl_service ./
+COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/hls_service ./
 
 ENV RUST_LOG=info
 ENV ISM_MODE=production
 
 EXPOSE 5555
 
-CMD ["./hsl_service"]
+CMD ["./hls_service"]
