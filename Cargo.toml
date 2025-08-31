@@ -1,0 +1,18 @@
+[package]
+name = "hls_service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+log = "0.4.27"
+axum = { version = "0.8.4", features = ["multipart"] }
+tokio = {version = "1.46.1", features = ["full"]}
+tower = "0.5.2"
+config = "0.15.13"
+serde = "1.0.219"
+uuid = { version = "1.17.0", features = ["v4", "serde", "v7"] }
+tower-http = { version = "0.6.6", features = ["cors", "trace"] }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+minio = { version = "0.3.0", features = ["default"] }
+hlskit = { git = "https://github.com/like-engels/hlskit-rs" }

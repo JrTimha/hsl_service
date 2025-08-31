@@ -1,0 +1,9 @@
+hsl_url = "localhost"
+hsl_port= 5555
+log_level = "info"
+
+[object_db_config]
+db_user = "minioadmin"
+db_url = "http://localhost:9000"
+db_password = "minioadmin"
+bucket_name = "meventure"
