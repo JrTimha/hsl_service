@@ -64,15 +64,15 @@ impl ObjectDatabase {
     pub async fn insert_object(&self, object_id: Uuid, content: HlsVideo) -> Result<String, Box<dyn std::error::Error+Send+Sync>> {
         let session = self.session.clone();
         let hls_master = ObjectContent::from(content.master_m3u8_data);
-        let response = session.put_object_content(&self.config.bucket_name, format!("videos/{}/master.m3u8", &object_id), hls_master).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
+        let response = session.put_object_content(&self.config.bucket_name, format!("video/{}/master.m3u8", &object_id), hls_master).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
         for resolution in content.resolutions {
-            session.put_object_content(&self.config.bucket_name, format!("videos/{}/{}", &object_id, resolution.playlist_name), ObjectContent::from(resolution.playlist_data)).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
+            session.put_object_content(&self.config.bucket_name, format!("video/{}/{}", &object_id, resolution.playlist_name), ObjectContent::from(resolution.playlist_data)).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
             for segment in resolution.segments {
-                session.put_object_content(&self.config.bucket_name, format!("videos/{}/{}", &object_id, segment.segment_name), ObjectContent::from(segment.segment_data)).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
+                session.put_object_content(&self.config.bucket_name, format!("video/{}/{}", &object_id, segment.segment_name), ObjectContent::from(segment.segment_data)).content_type("application/vnd.apple.mpegurl".to_string()).send().await?;
             }
         }
         debug!("Saved object with name: {:?}", response.object);
-        Ok(format!("videos/{}", &object_id))
+        Ok(format!("video/{}", &object_id))
     }
 
 }

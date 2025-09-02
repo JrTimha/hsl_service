@@ -11,7 +11,7 @@ use hls_service::router::init_router;
 #[tokio::main(flavor = "multi_thread")]
 async fn main() {
 
-    let run_mode = env::var("ISM_MODE").unwrap_or_else(|_| "development".into());
+    let run_mode = env::var("HLS_MODE").unwrap_or_else(|_| "development".into());
     let config = HLSConfig::new(&run_mode).unwrap_or_else(|err| panic!("Missing needed env: {}", err));
     let filter = EnvFilter::try_new(config.log_level.clone()).unwrap_or_else(|_| EnvFilter::new("info"));
     tracing_subscriber::fmt().with_env_filter(filter).init();
@@ -24,14 +24,14 @@ async fn main() {
     };
     let app = init_router(app_state).await;
 
-    let url = format!("{}:{}", config.hsl_url, config.hsl_port);
+    let url = format!("{}:{}", config.hls_url, config.hls_port);
     let listener = TcpListener::bind(url.clone()).await.unwrap();
-    info!("HSL-Server up and is listening on: {url}");
+    info!("HLS-Transcoder-Server up and is listening on: {url}");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())//only working if there are no active connections
         .await
         .unwrap();
-    info!("Stopping HSL-Server...");
+    info!("Stopping HLS-Server...");
 }
 
 async fn shutdown_signal() {

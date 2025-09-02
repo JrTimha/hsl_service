@@ -4,8 +4,8 @@ use serde::Deserialize;
 #[derive(Deserialize, Debug, Clone)]
 #[allow(unused)]
 pub struct HLSConfig {
-    pub hsl_port: u16,
-    pub hsl_url: String,
+    pub hls_port: u16,
+    pub hls_url: String,
     pub log_level: String,
     pub object_db_config: ObjectDbConfig
 }

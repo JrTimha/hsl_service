@@ -1,5 +1,5 @@
-hsl_url = "localhost"
-hsl_port= 5555
+hls_url = "127.0.0.1"
+hls_port= 5555
 log_level = "info"
 
 [object_db_config]

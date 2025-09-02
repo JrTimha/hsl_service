@@ -274,6 +274,7 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
+ "serde",
  "wasm-bindgen",
  "windows-link",
 ]
@@ -740,11 +741,13 @@ name = "hls_service"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "chrono",
  "config",
  "hlskit",
  "log",
  "minio",
  "serde",
+ "serde_json",
  "tokio",
  "tower",
  "tower-http",

@@ -15,7 +15,7 @@ use crate::transcoding::transcode_video;
 pub async fn init_router(app_state: AppState) -> Router {
 
     let public_routing = Router::new()
-        .route("/", get(|| async { "Hello, world! I'm your new HSL-Service. 🤗" }))
+        .route("/", get(|| async { "Hello, world! I'm your new HLS-Transcoder-Service. 🤗" }))
         .route("/health", get(|| async { (StatusCode::OK, "Healthy").into_response() }));
 
     let protected_routing = Router::new() //add new routes here
@@ -25,7 +25,7 @@ pub async fn init_router(app_state: AppState) -> Router {
         .layer(
             ServiceBuilder::new() //layering top to bottom middleware
                 .layer(TraceLayer::new_for_http()) //1
-                .layer(DefaultBodyLimit::max(50 * 1024 * 1024)) //max 50mb files
+                .layer(DefaultBodyLimit::max(100 * 1024 * 1024)) //max 100mb files
         )
         .with_state(Arc::new(app_state));
     public_routing.merge(protected_routing)
