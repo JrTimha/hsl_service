@@ -44,7 +44,7 @@ pub async fn transcode_video(
     if let (Some(video_data), Some(dto)) = (video_bytes, metadata_dto) {
         let profiles = vec![
             HlsVideoProcessingSettings {
-                resolution: (1920, 1080),
+                resolution: (854, 480),
                 constant_rate_factor: 28,
                 audio_codec: HlsVideoAudioCodec::Aac,
                 audio_bitrate: HlsVideoAudioBitrate::Medium,
